@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+
+
+{% block title %} Login {% endblock title %}
+{% block content %}
+    <div class="enter-container">
+        <div class="form">
+            <h2>Login</h2>
+            <form action="" method="post">
+                {% csrf_token %} 
+                {{ form|crispy }}
+                
+                    <button class="btn btn-lg btn-success mt-2 login-button" type="Submit">Login</button>
+                  
+            </form>
+            <div class="container text-end mt-3 pl-0">
+                <small><a href="{% url 'password_reset' %}">Forgot Your Password?</a></small>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .form{
+            background-color: white;
+            padding: 2rem 2rem;
+            width: 450px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+        }
+        .login-button{
+            width: 100%;
+        }
+
+        .enter-container{
+            display: flex;
+            justify-content: center !important;
+            align-items: center;
+            margin: 1rem auto 1rem;
+        }
+    </style>
+{% endblock content %} 

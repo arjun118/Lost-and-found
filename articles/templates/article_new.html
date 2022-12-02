@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %} 
+{% block title %}Create Post{% endblock title %}
+{% block content %} 
+    <div class="article-form">
+        <h1>Create New Post</h1>
+        <form action="" method="post">
+            {% csrf_token %} 
+            {{ form|crispy }}
+            <p class="text-muted">Check the box "Found" if you are posting about an item found,
+                if you are posting about a lost item don't check the box.
+            </p>
+            <button class="btn btn-info" type="submit">Create</button>
+        </form>
+    </div>
+
+    <style>
+        .article-form{
+            width: 1050px;
+            background-color: white;
+            padding: 2rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+        }
+    </style>
+{% endblock content %} 
+

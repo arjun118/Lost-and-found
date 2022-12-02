@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block customcss %} 
+  <style>
+    .desc-cards{
+      display: flex;
+
+      justify-content: space-evenly;
+    }
+  </style>
+{% endblock customcss %} 
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <div class="alert alert-success alert-dismissible fade show" id="login-alert" role="alert">
+            <div>
+                <strong>Welcome {{ user.username }} You have successfully logged in!</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="main-header">
+
+            <div class="main-header-content">
+              <h1>LOST AND FOUND</h1>
+              <p>Welcome <strong class="blue">{{ user.username }}</strong></p>
+              <p class="mt-3" >This is a Lost and Found website where you can register and list the item.</p>
+              <p class="my-4">LOST IT😢. LIST IT📃. FIND IT🤩.</p>
+              <a class="nav-link ml-0 pl-0" href="{% url 'lost' %}"><button type="button" class="btn btn-dark btn-lg ">Lost  →</button></a>
+              <a class="nav-link ml-0 pl-0" href="{% url 'found' %}"><button type="button" class="btn btn-dark btn-lg ">Found  →</button></a>
+      
+            </div>
+            <div>
+              <img src="https://img.freepik.com/premium-vector/traveler-female-character-claim-her-bag-lost-found-luggage-office-airport-happy-passenger-lose-baggage-woman-receive-clutch-from-worker-service-stall-cartoon-people-vector-illustration_87771-14735.jpg?w=740" alt="">
+            </div>
+
+            <img style="position: absolute; z-index:-1; top:35rem; left: -9rem; width: 300px; transform:rotate(0deg)" src="https://th.bing.com/th/id/R.2143da12d3478a7cf5dfe010da1d7406?rik=UF%2bQA%2fTBKceg9g&riu=http%3a%2f%2fwww.clker.com%2fcliparts%2fd%2fz%2fc%2fO%2fW%2fk%2fblue-sun-hi.png&ehk=WHaS0K1R3G0kUIFVTaF1k4BNCetDQZROx8e6p54JBYk%3d&risl=&pid=ImgRaw&r=0" alt="" srcset="">
+            </div>
+
+            <div class="inspiron-container container">
+              <img src="https://camo.githubusercontent.com/40165a147c3dcea0fa1db780bb533fc5f98546ccfb9d5d05ddb2f429277f5348/68747470733a2f2f616e616c7974696373696e6469616d61672e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031382f31322f646576656c6f7065722d6472696262626c652e676966" alt="">
+    
+              <div class="">
+              <h1>PROJECT INSPIRATION</h1>
+              <p style="word-spacing: 8px;">Valuables are often Lost and are never to be found.Confusion about whom to notify about the lost item still prevails in the college.
+              Some may found a lost valuable belonging to other users are unclear about to whom they must submit the item
+            This drove us to find a common solution. This is the first step.</p>
+              </div>
+              <img style="position: absolute; z-index:-1; right: -10rem; transform:rotate(-30deg)" src="https://thumbs.dreamstime.com/b/vector-gl%C3%BChlampeikone-der-karikatur-komischen-art-elektrische-lampe-sig-123035005.jpg" alt="" srcset="">
+            </div>
+
+            <div>
+                <h1 class="desc-heading">HOW IT WORKS ?</h1>
+            <div class="container desc-cards">
+    
+                <div class="desc-card">
+                    <img src="https://www.clicksend.com/img/img-shared_sms_governement_process.svg" alt="">
+                    <h2>List the Lost Item</h2>
+                    <p>List your item on the wall by filling certain details.That's it !. Delete the post once you have found the Item</p>
+                </div>
+                
+                <div class="desc-card">
+                  <img src="https://img.freepik.com/premium-vector/boy-girl-create-account-social-media-vector-young-man-woman-using-smartphone-create-account-website-communication-chatting-with-friends-characters-flat-cartoon-illustration_87720-6016.jpg?w=2000" alt="">
+                  <h2>List the Found Item</h2>
+                  <p>List your item on the wall by filling certain details.That's it !. Delete the post once you made sure that it had reached the rightful owner</p>
+                </div>
+
+                <div class="desc-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpvotPW0G-Q8AjNKmrT_icVOf8uhopt2Ao584lc7ggrcBqE0cXZYz3jYIUFr_VAKhkKSo&usqp=CAU" alt="">
+                    <h2>Get Help</h2>
+                    <p>Users can comment about the last seen or provide valuable inputs that may help you.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container" style="position: relative;">
+            <h1 style="text-align: center; font-weight: 700; margin: 3rem 0 3rem; margin-top: 7rem;">Feedback Form</h1>
+            <div class="feedback-form">
+                <img src="https://img.freepik.com/premium-vector/illustration-vector-graphic-cartoon-character-email-services_516790-858.jpg" alt="">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="exampleInputName1" class="form-label">Name: </label>
+                        <input type="text" class="form-control" id="userName" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address: </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small style="font-size: 14px;" id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputMessage1" class="form-label">Message: </label>
+                        <textarea name="userSuggestion" id="userSuggestion" cols="50" rows="5"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <img style="position: absolute; z-index:-1; width: 250px; right: -17rem; top:13rem; transform:rotate(0deg)" src="https://th.bing.com/th/id/OIP.c7ysMv1jN1wy_LY2yXgnlwHaHa?pid=ImgDet&w=2083&h=2083&rs=1" alt="" srcset="">
+        </div>
+
+    {% else %}
+        
+        <div class="main-header">
+        <div class="main-header-content">
+          <h1>LOST AND FOUND</h1>
+          <p class="mt-3" >This is a Lost and Found website where you can register and list the item.</p>
+          <p class="my-4">LOST IT😢. LIST IT📃. FIND IT🤩.</p>
+          <div class="enter-links">
+            <a class="nav-link" href="{% url 'signup' %}"><button type="button" class="btn btn-dark btn-lg ">Sign Up</button></a>
+          <a class="nav-link" href="{% url 'login' %}"><button type="button" class="btn btn-outline-dark btn-lg">Log In</button></a>
+        </div>
+  
+        </div>
+        <div>
+          <img src="https://img.freepik.com/premium-vector/traveler-female-character-claim-her-bag-lost-found-luggage-office-airport-happy-passenger-lose-baggage-woman-receive-clutch-from-worker-service-stall-cartoon-people-vector-illustration_87771-14735.jpg?w=740" alt="">
+        </div>
+
+        <img style="position: absolute; z-index:-1; top:35rem; left: -9rem; width: 300px; transform:rotate(0deg)" src="https://th.bing.com/th/id/R.2143da12d3478a7cf5dfe010da1d7406?rik=UF%2bQA%2fTBKceg9g&riu=http%3a%2f%2fwww.clker.com%2fcliparts%2fd%2fz%2fc%2fO%2fW%2fk%2fblue-sun-hi.png&ehk=WHaS0K1R3G0kUIFVTaF1k4BNCetDQZROx8e6p54JBYk%3d&risl=&pid=ImgRaw&r=0" alt="" srcset="">
+        </div>
+
+        <div class="inspiron-container container">
+          <img src="https://camo.githubusercontent.com/40165a147c3dcea0fa1db780bb533fc5f98546ccfb9d5d05ddb2f429277f5348/68747470733a2f2f616e616c7974696373696e6469616d61672e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031382f31322f646576656c6f7065722d6472696262626c652e676966" alt="">
+
+          <div class="">
+          <h1>PROJECT INSPIRATION</h1>
+          <p style="word-spacing: 10px;" >Valuables are often lost,never to be found. There is a lot of confusion about who to notify about the lost item.
+          If one finds something that belongd to someone else, they might not know how to get it back to the rightful owner.This motivated us to come up with a workable solution.It all starts with this</p>
+          </div>
+          <img style="position: absolute; z-index:-1; right: -10rem; transform:rotate(-30deg)" src="https://thumbs.dreamstime.com/b/vector-gl%C3%BChlampeikone-der-karikatur-komischen-art-elektrische-lampe-sig-123035005.jpg" alt="" srcset="">
+        </div>
+
+        <div style="position: relative;">
+            <h1 class="desc-heading">HOW IT WORKS ?</h1>
+        <div class="container desc-cards">
+        
+            <div class="desc-card">
+                <img src="https://img.freepik.com/premium-vector/boy-girl-create-account-social-media-vector-young-man-woman-using-smartphone-create-account-website-communication-chatting-with-friends-characters-flat-cartoon-illustration_87720-6016.jpg?w=2000" alt="">
+                <h2>Create an account</h2>
+                <p>Go to the Signup page, create an account.As simple as that!</p>
+            </div>
+
+            <div class="desc-card">
+                <img src="https://www.clicksend.com/img/img-shared_sms_governement_process.svg" alt="">
+                <h2>List Lost/Found Item</h2>
+                <p>List your item on the wall by filling certain details. Get help while helping others :)</p>
+            </div>
+
+            <div class="desc-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpvotPW0G-Q8AjNKmrT_icVOf8uhopt2Ao584lc7ggrcBqE0cXZYz3jYIUFr_VAKhkKSo&usqp=CAU" alt="">
+                <h2>Get Help</h2>
+                <p>Other users of the site basically Students, can comment on your post and let you know about the whereabouts of the item</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
+    {% endif %}
+
+    <style>
+        .alert{
+            position: absolute;
+            top: 20px;
+            margin: 0px 25%;
+        }
+
+        .hide-alert{
+            display: none;
+            transition: all ease 1s;
+        }
+
+        .main-header{
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding-left: 5rem;
+
+      }
+
+      .main-header img{
+        margin-top: -8rem;
+        z-index: -1;
+        /* margin-right: -5rem; */
+      }
+
+      .main-header-content{
+        padding-left: 5rem;
+      }
+
+      .main-header h1{
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      .enter-links{
+        display: flex;
+        justify-content:flex-start ;
+        align-items: center;
+        margin-left: -12px;
+      }
+
+      .desc-cards{
+        display: flex;
+        gap: 3rem;
+      }
+
+      .container img{
+        object-fit: contain;
+        height: 300px;
+        width: 300px;
+      }
+
+      .desc-card{
+        width: 350px;
+        background-color: white;
+        padding: 1rem 20px;
+        border-radius: 10px;
+        box-shadow: 0px 10px 15px rgb(132, 118, 118);
+        transition: all ease 0.4s;
+      }
+
+      .desc-card:hover{
+        transform: scale(1.1);
+      }
+
+      .desc-card p{
+        font-size: 18px;
+      }
+
+      .desc-heading{
+        text-align: center;
+        font-weight: 700;
+        margin: 1rem 0 3rem;
+      }
+
+      .feedback-form{
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .feedback-form img{
+        width: 700px;
+        height: 500px;
+      }
+
+      textarea:focus { 
+        outline: none !important;
+        border-color: #719ECE;
+        box-shadow: 0 0 8px #719ECE;
+      }
+
+      .inspiron-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+        margin: 5rem auto;
+      }
+
+      .inspiron-container h1{
+        font-weight: 700;
+        font-size: 44px;
+      }
+
+      .inspiron-container p{
+        margin-top: 1rem;
+        font-size: 20px;
+      }
+
+      .alert-msg{
+        z-index: 2;
+      }
+
+      .inspiron-container img{
+        width: 400px;
+      }
+
+      .blue{
+        color: teal;
+      }
+    </style>
+    
+    <script>
+        setTimeout(()=>{
+            document.getElementById("login-alert").classList.add("hide-alert");
+        }, 2000);
+    </script>
+
+{% endblock content %}

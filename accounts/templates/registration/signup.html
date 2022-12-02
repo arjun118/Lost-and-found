@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+
+{% load crispy_forms_tags %}
+
+{% block title %} SignUp {% endblock title %}
+
+
+{% block content %}
+    <div class="form">
+        <h2>SignUp</h2>
+        <form method="post">
+            {% csrf_token %} 
+            {{ form|crispy }}
+            <button  class="btn btn-lg btn-success signup-button" type="Submit">Signup</button>
+        </form>
+    </div>
+
+    <style>
+        .form{
+            background-color: white;
+            padding: 2rem 2rem;
+            width: 700px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+            margin: 0 auto;
+        }
+        .signup-button{
+            width: 100%;
+        }
+    </style>
+{% endblock content %} 

@@ -1,0 +1,150 @@
+{% extends "base.html" %} 
+{% block title %}All Posts By you{% endblock title %}
+{% block customcss %}  
+    <style>
+        .card-header-main{
+            font-size: 30px;
+        }
+        .comment-sec{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        #article-comment{
+            border-radius: 30px;
+            text-indent: 20px;
+            width: 100%;
+            outline-color: red;
+            border: 1px solid;
+            height: 50px;
+        }
+        #article-comment:focus{
+            outline: none;
+        }
+        .icon-send{
+            background-color: teal;
+            color: white;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            padding: 5px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -50px;
+        }
+        .profile-img{
+            width: 70px;
+            border-radius: 50%;
+        }
+
+        .font-s{
+            font-size: smaller;
+        }
+
+        .card{
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+            transition: all ease 0.4s;
+        }
+
+        .comment-continer{
+            padding: 0 1.6% 2%;
+        }
+
+        .underline-remove{
+            text-decoration: none;
+        }
+
+        .card-header a,h6{
+            color: white;
+        }
+
+        .card:hover{
+            transform: scale(1.05);
+            transition: all 0.4s;
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
+        
+        .comments{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+    </style>
+{% endblock customcss %} 
+
+{% block content %} 
+
+<div style="min-height: 70vh;">
+    {% if posts|length %}
+        
+        {% for article in posts %} 
+            <div class="card" style="width: 850px; ">
+                <div class="card-header comment-sec" style="background-color: #50585d;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvAek7GmXZ1S9mflxC2ejbUvjpsVx07ciV_g&usqp=CAU" alt="" class="profile-img">
+                    <div class="d-inline-block ml-3">
+                        <span class="font-weight-bold card-header-main my-0">
+                            <a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a>
+                        </span>
+                        <br />
+                        <span class="text-muted "><h6 class="mt-0 mp-0">
+                        By  {{ article.author }} | {{ article.date }}
+                        </h6>
+                        </span>
+                    </div>
+        
+                </div>
+            
+                <div class="card-body">
+                    
+                    <p class="font-s"> {{ article.body }}</p>
+                </div>
+                
+                <div class="text-center">
+            
+                    <p class="upward">
+                        <a href="{% url 'article_edit' article.pk %}" ><i class="fa fa-edit" style="background-color: rgb(95, 226, 95); color: white; width: 35px; height: 35px; border-radius: 50%;padding: 3px 0 0 2px;"></i></a> 
+                        |
+                        <a href="{% url 'article_delete' article.pk %}"><i class="fa fa-trash" style="background-color: rgb(219, 52, 34); color: white; width: 35px; height: 35px; border-radius: 50%;padding: 4px 2px 0 2px;"></i></a> 
+                
+                    </p>
+                </div>
+                <div class="comment-continer">
+                    <hr>
+                    <h3 class="text-muted">Comments</h3>
+                    {% for comment in article.comment_set.all %} 
+                        <div class="text-center comments">
+                            <blockquote class="blockquote">
+                            <p> {{ comment }}</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">
+                            By <cite title="Source Title">{{ comment.author }}</cite>
+                            </figcaption>
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+
+
+
+
+
+    {% else %}    
+          <div class="container ml-5 bg-secondary text-white text-center p-5"  style="background-color: grey;">
+            You have no posts yet.
+          </div>
+    {% endif %}
+</div>
+
+{% endblock content %} 
+
+
+

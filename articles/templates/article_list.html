@@ -1,0 +1,173 @@
+{% extends "base.html" %} 
+{% block title %}All Posts{% endblock title %}
+{% block customcss %}  
+    <style>
+        .card-header-main{
+            font-size: 30px;
+        }
+        .comment-sec{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        #article-comment{
+            border-radius: 30px;
+            text-indent: 20px;
+            width: 100%;
+            outline-color: red;
+            border: 1px solid;
+            height: 50px;
+        }
+        #article-comment:focus{
+            outline: none;
+        }
+        .icon-send{
+            background-color: teal;
+            color: white;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            padding: 5px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -50px;
+        }
+        .profile-img{
+            width: 70px;
+            border-radius: 50%;
+        }
+
+        .font-s{
+            font-size: smaller;
+        }
+
+        .card{
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+            transition: all ease 0.4s;
+        }
+
+        .comment-continer{
+            padding: 0 3.5% 3.5%;
+        }
+
+        .underline-remove{
+            text-decoration: none;
+        }
+
+        .card-width{
+            width: 850px;
+        }
+
+        .card-header{
+            background-color: #50585d;
+            /* background-color:cadetblue;
+            background-color: cornflowerblue;
+            background-color:palegreen; */
+        }
+
+        .card-header a, h6{
+            color: white;
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
+
+        .card:hover{
+            transform: scale(1.05);
+            transition: all ease 0.4s;
+        }
+
+        .comments{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+        .inp{
+            padding: 10px;
+            border-radius: 10%;
+            /* border: 1px solid black; */
+            width: 80%;
+            outline-width: medium;
+        }
+        .search-fields{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 5px;
+            padding: 16px;
+        }
+        .btn{
+            border-radius: 10%;
+        }
+    </style>
+{% endblock customcss %} 
+{% block content %} 
+    <div class="search-fields">
+        <form action="" method="get">
+            <input class="inp" placeholder="Search by title" type="text" name="search-area" size="60" value='{{ search_input }}'>
+            <button type="submit " class="bton"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+    </div>
+{% for article in article_list %} 
+
+<!-- 
+
+    https://www.kindpng.com/picc/m/78-785975_icon-profile-bio-avatar-person-symbol-chat-icon.png
+
+    https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
+    
+ -->
+    
+    <div class="card card-width">
+        <div class="card-header comment-sec">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvAek7GmXZ1S9mflxC2ejbUvjpsVx07ciV_g&usqp=CAU" alt="" class="profile-img">
+            <div class="d-inline-block ml-3">
+                <span class="font-weight-bold card-header-main my-0">
+                    <a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a>
+                </span>
+                <br />
+                <span class="text-muted "><h6 class="mt-0 mp-0">
+                   By  {{ article.author }} | {{ article.date }}
+                </h6>
+                </span>
+            </div>
+
+        </div>
+    
+        <div class="card-body pl-5">
+            
+            <p class="font-s"> {{ article.body }}</p>
+        </div>
+
+        <div class="comment-continer">
+            <hr>
+            <h3 class="text-muted">Comments</h3>
+            {% for comment in article.comment_set.all %} 
+                <div class="text-center comments">
+                    <blockquote class="blockquote">
+                      <p> {{ comment }}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                      By <cite title="Source Title">{{ comment.author }}</cite>
+                    </figcaption>
+                </div>
+            {% endfor %} 
+            <a href="{% url 'article_detail' article.pk %}" class="underline-remove">
+                <div class="comment-sec mt-3 underline-remove">
+                    <input type="text" name="comment" class="font-s" id="article-comment" class="underline-remove" placeholder="Add comment..."><i class="bi bi-send icon-send"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+    
+{% endfor %} 
+{% endblock content %} 
+

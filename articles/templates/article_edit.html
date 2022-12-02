@@ -1,0 +1,26 @@
+
+
+{% extends "base.html" %} 
+{% load crispy_forms_tags %} 
+{% block title %}Edit Post{% endblock title %}
+{% block content %} 
+    <div class="form">
+        <h1>Edit</h1>
+    <form action="" method="post">
+        {% csrf_token %} 
+        {{ form|crispy }}
+        <button class="btn btn-info ml-2" type="submit">Update</button>
+    </form>
+    </div>
+
+    <style>
+        .form{
+            background-color: white;
+            padding: 2rem 2rem;
+            width: 700px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgb(132, 118, 118);
+        }
+    </style>
+{% endblock content %} 
+
